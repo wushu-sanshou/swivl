@@ -1,14 +1,25 @@
-const initialState = [];
+const initialState = {
+    followers:[],
+    isFetchingFollowers:true
+};
 
 
 const getFollowersReducer = (state = initialState,action) => {
 
-    switch(action.type){
+    switch(action.type) {
         case 'GET_FOLLOWERS':
-            return [...action.followers];
+            return {
+                ...state,
+                followers: [...action.followers],
+                isFetchingFollowers:false
+            };
+
         
         case 'CLEAR_FOLLOWERS':
-            return [];
+            return {
+            followers: [],
+            isFetchingFollowers:true
+        };
 
         default:
             return state;

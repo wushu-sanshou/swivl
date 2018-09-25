@@ -2,40 +2,32 @@ import React, { Component } from 'react';
 import UserComponent from './userComponent';
 import { connect } from 'react-redux';
 import { getAllUsersQuery } from '../actions/actions';
+import Preloader from './preloader';
 
 class UsersTable extends Component {
     constructor(props){
         super(props);
-        this.state ={
-            maxCount:100,
-            per_page:100
-            
-        }
-        this.pageHandler = this.pageHandler.bind(this);
+        
     }
     componentDidMount() {
-        const {per_page} = this.state;
-        this.props.getAllUsers(per_page,0);
+        this.props.getAllUsers();
     }
 
-    pageHandler(e) {
-        const {per_page} = this.state;
-        const page = parseInt(e.target.getAttribute('data-index'));
-        const since = page*per_page;
-    }
 
     render() {
-
-        const {usersState} = this.props;
-        const user = usersState.map((singleUser, index) => {
+        const {users,isFetching} = this.props.usersState;
+        const user = users.map((singleUser, index) => {
             return (
                 <UserComponent userInfo={{...singleUser}} index={index+1} key={singleUser.id} />
             )
         });
 
         return(
-            <div className="userTable">
-              {user}
+            <div>
+                {isFetching?<Preloader/>:''}
+                <div className="userTable">
+                  {user}
+                </div>
             </div>
         );
       }
@@ -43,7 +35,7 @@ class UsersTable extends Component {
 }
 
 const mapStateToProps = (state)=>({
-   usersState: [...state.getAllUsersReducer]
+   usersState: {...state.getAllUsersReducer}
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -7,7 +7,7 @@ import getFollowersReducer from './getFollowersReducer';
 const rootReducer = combineReducers({
     getAllUsersReducer,
     getSingleUserReducer,
-    getFollowersReducer,
+    getFollowersReducer
 });
 
 export default rootReducer;

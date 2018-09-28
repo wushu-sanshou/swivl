@@ -14,6 +14,8 @@ class SingleUser extends Component {
     imageLoadHandler(e){
 
         e.target.style.opacity=1;
+        const picture = e.target.parentElement;
+        picture.childNodes[0].setAttribute('srcset','');
     }
     
     componentDidMount() {
@@ -36,7 +38,10 @@ class SingleUser extends Component {
             return(
                 <div className="followerExpose" key={item.id}>
                     <div>
-                      <img src={item.avatar_url} alt="" style={{opacity:0}} onLoad={this.imageLoadHandler}/>
+                  <picture>
+                  <source  srcSet="https://thumbs.gfycat.com/JointRevolvingAntelopegroundsquirrel-size_restricted.gif" media="(min-width: 50px)"/>
+                    <img src={item.avatar_url} alt="" style={{opacity:0}} onLoad={this.imageLoadHandler}/>
+                  </picture>
                     </div>
                     <div className="followerLogin">
                         {item.login}

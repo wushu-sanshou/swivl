@@ -10,6 +10,8 @@ const link = `user/${login}`;
 
 const imageLoadHandler = (e) => {
 e.target.style.opacity = 1;
+const picture = e.target.parentElement;
+picture.childNodes[0].setAttribute('srcset','');
 };
 
 
@@ -19,7 +21,10 @@ e.target.style.opacity = 1;
                  {props.index}
             </div>  
             <div className="avatar">
+            <picture>
+              <source  srcSet="https://thumbs.gfycat.com/JointRevolvingAntelopegroundsquirrel-size_restricted.gif" media="(min-width: 50px)"/>
                <img src={avatar_url} alt="" onLoad={imageLoadHandler} style={{opacity:0}}/>
+            </picture>
             </div>
             <div className="userInfo">
                 <div className="login">

@@ -16,6 +16,7 @@ const getSingleUserReducer = (state = initialState,action) => {
 
         case 'CLEAR_USER':
             return {
+                ...state,
                 user:{},
                 isFetching:true
             };

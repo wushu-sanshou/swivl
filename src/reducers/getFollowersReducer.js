@@ -17,6 +17,7 @@ const getFollowersReducer = (state = initialState,action) => {
         
         case 'CLEAR_FOLLOWERS':
             return {
+            ...state,
             followers: [],
             isFetchingFollowers:true
         };
